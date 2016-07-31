@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'characters/style.css' %}" />
+
+<h1>Hello, world. You're at the characters index.</h1>
+
+<ul>
+{% for character in characters %}
+    <li>
+        <a href="{% url 'characters:detail' character.id %}">{{ character.name }}</a>
+    </li>
+{% endfor %}
+</ul>
