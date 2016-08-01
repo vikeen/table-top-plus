@@ -16,7 +16,7 @@
         {% for character in characters %}
             <tr>
                 <td>
-                    <a href="{% url 'characters:detail' character.id %}">{{ character.name }}</a>
+                    <a href="{% url 'characters:update' character.id %}">{{ character.name }}</a>
                 </td>
             </tr>
         {% endfor %}

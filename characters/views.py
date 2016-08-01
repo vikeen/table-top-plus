@@ -11,11 +11,13 @@ class Index(generic.ListView):
 
 class Create(generic.CreateView):
     model = Character
-    fields = ["name"]
+    fields = ["name", "game_template"]
 
 
-class Detail(generic.DetailView):
+class Update(generic.UpdateView):
     model = Character
+    fields = ["name", "game_template"]
+    template_name = 'characters/character_form.html'
 
 
 class Delete(generic.DeleteView):

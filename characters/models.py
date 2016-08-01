@@ -3,12 +3,14 @@ from django.db import models
 
 
 class Character(models.Model):
+    GAME_TEMPLATE_CHOICES = (
+        ('dnd_5e', 'Dungeons and Dragons 5th Edition'),
+    )
+
     name = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
-    def get_name(self):
-        return self.name
+    game_template = models.CharField(max_length=200, choices=GAME_TEMPLATE_CHOICES)
 
     def get_absolute_url(self):
-        return reverse('characters:detail', kwargs={'pk': self.pk})
+        return reverse('characters:update', kwargs={'pk': self.pk})
