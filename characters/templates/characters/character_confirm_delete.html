@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'characters/style.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
+        <button class="btn btn-danger">Confirm</button>
+    </form>
+{% endblock %}
