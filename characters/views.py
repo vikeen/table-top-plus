@@ -4,20 +4,20 @@ from django.core.urlresolvers import reverse_lazy
 from .models import Character
 
 
-class index(generic.ListView):
+class Index(generic.ListView):
     model = Character
     context_object_name = 'characters'
 
 
-class create(generic.CreateView):
+class Create(generic.CreateView):
     model = Character
     fields = ["name"]
 
 
-class detail(generic.DetailView):
+class Detail(generic.DetailView):
     model = Character
 
 
-class delete(generic.DeleteView):
+class Delete(generic.DeleteView):
     model = Character
     success_url = reverse_lazy('characters:index')

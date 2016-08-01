@@ -8,6 +8,7 @@
     {% block styles %}
     {% endblock %}
     <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/pdfjs/build/pdf.combined.js' %}"></script>
 </head>
 <body>
 
@@ -18,9 +19,8 @@
     {% endblock %}
 </main>
 
-{%  include 'base_footer.html' %}
+{% include 'base_footer.html' %}
 
 {% bootstrap_javascript %}
-<script src="{% static 'js/pdfjs/build/pdf.combined.js' %}"></script>
 </body>
 </html>
