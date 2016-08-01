@@ -19,13 +19,17 @@
             {% endif %}
         </div>
         <div class="col-xs-12 col-md-8">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#" onclick="renderPage(1)">Core</a></li>
+                <li><a href="#" onclick="renderPage(2)">Background</a></li>
+                <li><a href="#" onclick="renderPage(3)">Spells</a></li>
+            </ul>
             <canvas id="the-canvas"></canvas>
         </div>
     </div>
 
     <script>
         var pdfDoc = null,
-                pageNum = 1,
                 pageRendering = false,
                 pageNumPending = null,
                 scale = 1.3,
@@ -33,34 +37,36 @@
                 ctx = canvas.getContext('2d');
 
         function renderPage(num) {
-            pageRendering = true;
-            pdfDoc.getPage(num).then(function (page) {
-                var viewport = page.getViewport(scale);
+            PDFJS.getDocument('/static/characters/images/dnd-5e-character-sheet_' + num + '.pdf').then(function (pdf) {
+                pageRendering = true;
 
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+                pdf.getPage(1).then(function (page) {
+                    var viewport = page.getViewport(scale);
 
-                var renderContext = {
-                    canvasContext: ctx,
-                    viewport: viewport
-                };
-                var renderTask = page.render(renderContext);
-                // Wait for rendering to finish
-                renderTask.promise.then(function () {
-                    pageRendering = false;
-                    if (pageNumPending !== null) {
-                        // New page rendering is pending
-                        renderPage(pageNumPending);
-                        pageNumPending = null;
-                    }
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    var renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+                    var renderTask = page.render(renderContext);
+                    // Wait for rendering to finish
+                    renderTask.promise.then(function () {
+
+                        $
+
+                        pageRendering = false;
+                        if (pageNumPending !== null) {
+                            // New page rendering is pending
+                            renderPage(pageNumPending);
+                            pageNumPending = null;
+                        }
+                    });
                 });
             });
         }
 
-        PDFJS.getDocument('/static/characters/images/dnd-5e-character-sheet_1.pdf').then(function (pdfDoc_) {
-            pdfDoc = pdfDoc_;
-
-            renderPage(pageNum);
-        });
+        renderPage(1);
     </script>
 {% endblock %}
