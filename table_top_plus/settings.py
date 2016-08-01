@@ -29,7 +29,6 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'characters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +38,12 @@ INSTALLED_APPS = [
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+
+    'jquery',
+    'bootstrap3',
+
+    'characters'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'table_top_plus.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

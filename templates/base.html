@@ -1,0 +1,26 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Table Top Plus</title>
+    {% bootstrap_css %}
+    {% block styles %}
+    {% endblock %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+</head>
+<body>
+
+{% include 'base_header.html' %}
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+{%  include 'base_footer.html' %}
+
+{% bootstrap_javascript %}
+<script src="{% static 'js/pdfjs/build/pdf.combined.js' %}"></script>
+</body>
+</html>
