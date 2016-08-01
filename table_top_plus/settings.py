@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'jquery',
     'bootstrap3',
 
-    'characters'
+    'characters',
+    'home'
 ]
 
 MIDDLEWARE_CLASSES = [
